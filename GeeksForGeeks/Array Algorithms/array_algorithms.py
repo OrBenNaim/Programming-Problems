@@ -55,10 +55,12 @@ def max_product_subarray(arr: int) -> int:
         raise Exception("Empty array\n")
     
     currMax = currMin = maxPro = arr[0]
+    n = len(arr)
 
-    for i in range(1, len(arr)):
+    for i in range(1, n):
+        temp = max(currMin * arr[i], currMax * arr[i], arr[i])
         currMin = min(currMin * arr[i], currMax * arr[i], arr[i])
-        currMax = max(currMin * arr[i], currMax * arr[i], arr[i])
+        currMax = temp
         maxPro = max(currMax, maxPro)
     
     return maxPro
